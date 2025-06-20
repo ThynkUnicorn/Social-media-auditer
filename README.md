@@ -84,3 +84,12 @@ Don’t auto-score attractiveness.
 Be inclusive and focus on professional improvement, not critique.
 
 Display a disclaimer: “Audit is AI-generated and for informational purposes only.”
+
+## Running the API
+Install dependencies with `pip install -r requirements.txt` and start the server:
+
+```bash
+uvicorn api.main:app --reload
+```
+
+Open `frontend/index.html` in your browser to use the simple upload interface.
