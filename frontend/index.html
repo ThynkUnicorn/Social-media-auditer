@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Social Media Auditer</title>
+</head>
+<body>
+    <h1>Upload Profile Image</h1>
+    <form id="audit-form">
+        <input type="file" id="image" name="image" accept="image/*" required><br>
+        <label for="platform">Platform:</label>
+        <select id="platform" name="platform">
+            <option value="linkedin">LinkedIn</option>
+            <option value="instagram">Instagram</option>
+            <option value="twitter">X/Twitter</option>
+        </select>
+        <button type="submit">Audit</button>
+    </form>
+    <pre id="result"></pre>
+
+    <script>
+    document.getElementById('audit-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('image', document.getElementById('image').files[0]);
+        formData.append('platform', document.getElementById('platform').value);
+        const response = await fetch('/audit', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await response.json();
+        document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+    });
+    </script>
+</body>
+</html>
